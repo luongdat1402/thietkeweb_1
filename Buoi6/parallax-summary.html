@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu Ứng Parallax - CSS Cổ Điển</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f5f9;
+        }
+
+        .dummy-content {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dummy-content h1 {
+            color: #334155;
+            font-size: 2.5rem;
+        }
+
+        /* ==========================================================
+           PARALLAX SECTION
+           ========================================================== */
+        .parallax-section {
+            position: relative;
+            width: 100%;
+            min-height: 400px;
+            /* Ảnh nền chất lượng cao từ Unsplash */
+            background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80');
+            /* TẠO HIỆU ỨNG PARALLAX: GIỮ CỐ ĐỊNH ẢNH NỀN KHI CUỘN */
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Lớp phủ mờ giúp nổi bật chữ */
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.75); 
+            z-index: 1;
+        }
+
+        /* Nội dung hiển thị bên trên lớp parallax */
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            max-width: 800px;
+            color: #fff;
+        }
+
+        .parallax-content h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .parallax-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design cho Mobile */
+        @media (max-width: 768px) {
+            .parallax-section {
+                min-height: 300px;
+                /* Note: Trên một số trình duyệt iOS Safari cũ, background-attachment: fixed có thể không mượt.
+                   Đây là lý do đôi khi các lập trình viên dùng JS thay thế. Nhưng CSS chuẩn vẫn là fixed. */
+                background-attachment: fixed; 
+            }
+            
+            .parallax-content h2 {
+                font-size: 24px;
+            }
+            
+            .parallax-content p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dummy-content">
+        <div>
+            <h1>Kéo xuống để xem Parallax</h1>
+            <p>Nội dung đang được cuộn đi...</p>
+        </div>
+    </div>
+
+    <!-- KHU VỰC ÁP DỤNG PARALLAX -->
+    <section class="parallax-section">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h2>Đam Mê Kiến Tạo Tương Lai</h2>
+            <p>Sứ mệnh của tôi là mang đến những trải nghiệm web tốc độ, thẩm mỹ và trực quan nhất cho người dùng.</p>
+        </div>
+    </section>
+
+    <div class="dummy-content">
+        <div>
+            <h1>Tiếp tục cuộn...</h1>
+            <p>Bạn sẽ thấy bức ảnh ở trên bị trôi đi theo một tỷ lệ khác (hoặc giữ cố định) so với phần chữ.</p>
+        </div>
+    </div>
+
+</body>
+</html>

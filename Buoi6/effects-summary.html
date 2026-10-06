@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng hợp các hiệu ứng CSS (Typing, Hamburger, Progress Bar)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f8fafc;
+            color: #333;
+        }
+        
+        .section-title {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2563eb;
+            color: #2563eb;
+        }
+
+        /* ---------------------------------------------------
+           1. HIỆU ỨNG MÁY ĐÁNH CHỮ (TYPING EFFECT)
+           --------------------------------------------------- */
+        .typing-container {
+            display: inline-block;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #2563eb; /* Con trỏ nhấp nháy */
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+            font-size: 16px;
+            margin: 0;
+            color: #475569;
+            max-width: fit-content;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #2563eb; }
+        }
+
+        /* ---------------------------------------------------
+           2. HIỆU ỨNG HAMBURGER (MENU BUTTON) CHUYỂN THÀNH X
+           --------------------------------------------------- */
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 35px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            outline: none;
+        }
+
+        .hamburger-btn span {
+            width: 100%;
+            height: 4px;
+            background: #2563eb;
+            border-radius: 10px;
+            transition: all 0.3s linear; /* Transition cho transform và opacity */
+            transform-origin: 1px;
+        }
+
+        /* Khi thêm class .active */
+        .hamburger-btn.active span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        .hamburger-demo-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        /* ---------------------------------------------------
+           3. HIỆU ỨNG THANH TIẾN TRÌNH (PROGRESS BAR)
+           --------------------------------------------------- */
+        .skills-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+
+        .skill-bar-container {
+            width: 100%;
+        }
+
+        .skill-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .skill-bar-bg {
+            width: 100%;
+            height: 10px;
+            background-color: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #0d9488);
+            width: 0; /* Bắt đầu từ 0 */
+            border-radius: 20px;
+            /* animation-fill-mode: forwards giúp thanh giữ nguyên sau khi animation hoàn tất */
+            animation: fillBar 2s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Bản Tóm Tắt Code CSS Effects</h1>
+    <p>File này chứa toàn bộ mã nguồn HTML và CSS độc lập cho 3 hiệu ứng đã thực hiện.</p>
+
+    <h2 class="section-title">1. Hiệu ứng máy đánh chữ (Typing Effect)</h2>
+    <div class="typing-container">
+        <p class="typing-text">Tôi tên là Dat , hiện nay 19 tuổi . Tôi là kỹ sư phần mềm</p>
+    </div>
+
+    <h2 class="section-title">2. Hiệu ứng Hamburger to X</h2>
+    <div class="hamburger-demo-box">
+        <p>Bấm vào nút bên dưới để xem hiệu ứng chuyển đổi thành dấu X:</p>
+        <button class="hamburger-btn" onclick="this.classList.toggle('active')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <h2 class="section-title">3. Hiệu ứng Thanh tiến trình (Progress Bar)</h2>
+    <div class="skills-bars">
+        <div class="skill-bar-container">
+            <div class="skill-bar-header">
+                <span>HTML / CSS</span>
+                <span>90%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="--target-width: 90%;"></div>
+            </div>
+        </div>
+        
+        <div class="skill-bar-container">
+            <div class="skill-bar-header">
+                <span>JavaScript</span>
+                <span>80%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-bar-fill" style="--target-width: 80%;"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
